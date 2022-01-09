@@ -1,32 +1,116 @@
+@import 'variables';
+
+// Main Styles
+body{
+    font-family: $main-font;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 100px;
+}
+a{
+    color: $blue;
+    transition: background-color ease-in-out 0.5s;
+    &:hover,
+    &:focus{
+        background-color: $blue;
+        color: white;
+        text-decoration: none;
+    }
+}
+header{
+    text-align: center;
+    margin-bottom: 70px;
+    padding-left: 20px;
+    padding-right: 20px;
+    h1{
+        margin-bottom: 15px;
+        color: $blue;
+    }
+    .description{
+        font-family: $mono;
+        color: #444;
+        line-height: 1.5;
+    }
+}
 .accordion{
+    margin-bottom: 40px;
     &__item{
-        &-title{
-            margin-bottom: 10px;
-        }
+        margin-bottom: 10px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+        
         &-content{
-            padding: 16px;
+            padding: 30px 40px;
             display: none;
-            background-color: beige;
-            p{
-                font-size: 16px;
-            }
+            opacity: 0;
+            background-color: white;
+            border: 1px solid var(--tab-active-color) !important;
+            border-top: 0 !important;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: lighten(#444, 0.8);
         }
 
         &--open{
+            .accordion__item-title{
+                background-color: var(--tab-active-color) !important;
+                border-color: var(--tab-active-color);
+                color: white;
+                border-radius: 5px 5px 0 0;
+            }
             .accordion__item-content{
                 display: block;
+                opacity: 1;
+                animation-name: opacity;
+                animation-duration: 0.5s;
+                animation-iteration-count: 1;
+                border-radius: 0 0 5px 5px;
             }
         }
     }
     button{
-        background-color: purple;
-        border: 0;
+        background-color: $gray;
+        background-image: url(../images/arrow-down.svg);
+        background-repeat: no-repeat;
+        background-position: right 20px top 50%;
+        color: darken($gray, 70%);
+        font-family: $main-font;
+        outline: 0;
         display: block;
         text-align: left;
         width: 100%;
-        padding: 16px 50px 16px 27px;
-        font-weight: bold;
-        font-size: 18px;
+        padding: 20px 50px 20px 27px;
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.05rem;
         cursor: pointer;
+        border: 1px solid transparent;
+        
+        &:hover,
+        &:focus{
+            background-color: darken($gray, 5);
+            border-color: darken($gray, 25%);
+        }
+    }
+}
+
+@keyframes opacity{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 0.2;
+    }
+    40%{
+        opacity: 0.4;
+    }
+    60%{
+        opacity: 0.6;
+    }
+    80%{
+        opacity: 0.8;
+    }
+    100%{
+        opacity: 1;
     }
 }
