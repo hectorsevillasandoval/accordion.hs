@@ -1,4 +1,4 @@
-/*! AccordionJS v1.0.0 | Small collapse library | Copyright 2022 | MIT license */
+/*! accordion.hs v1.0.0 | Small collapse library | Copyright 2022 | MIT license */
 var AccordionHS = (function () {
 	'use strict';
 

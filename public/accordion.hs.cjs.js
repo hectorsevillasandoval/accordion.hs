@@ -1,4 +1,6 @@
-/*! AccordionJS v1.0.0 | Small collapse library | Copyright 2022 | MIT license */
+/*! accordion.hs v1.0.0 | Small collapse library | Copyright 2022 | MIT license */
+'use strict';
+
 /**
  * Accordion JS Library
  * (c) 2021 Héctor Sevilla, MIT License, https://www.hectorsevillasandoval.com/
@@ -141,4 +143,4 @@ AccordionHS.prototype.showError = function () {
 	return console.error(errorMessage);
 };
 
-export { AccordionHS as default };
+module.exports = AccordionHS;
