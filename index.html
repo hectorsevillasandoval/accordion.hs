@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accordion JS</title>
+    <title>Accordion HS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -30,89 +30,40 @@
             <div class="accordion__wrapper">
 
                 <div class="accordion__item">
-                    <button class="accordion__item-title">
+                    <button class="accordion__item-title" aria-expanded="false" aria-controls="panel1" id="accordion1">
                         This is a Title
                     </button>
-                    <div class="accordion__item-content">
+                    <div class="accordion__item-content" id="panel1" role="region" aria-labelledby="accordion1">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
                     </div>
                 </div>
                 <!-- ITEM END -->
 
                 <div class="accordion__item">
-                    <button class="accordion__item-title">
+                    <button class="accordion__item-title" aria-expanded="false" aria-controls="panel2" id="accordion2">
                         This is a Title
                     </button>
-                    <div class="accordion__item-content">
+                    <div class="accordion__item-content" id="panel2" role="region" aria-labelledby="accordion2">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
                     </div>
                 </div>
                 <!-- ITEM END -->
 
                 <div class="accordion__item">
-                    <button class="accordion__item-title">
+                    <button class="accordion__item-title" aria-controls="panel3" aria-expanded="false" id="accordion3">
                         This is a Title
                     </button>
-                    <div class="accordion__item-content">
+                    <div class="accordion__item-content" id="panel3" role="region" aria-labelledby="accordion3">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
                     </div>
                 </div>
                 <!-- ITEM END -->
 
                 <div class="accordion__item">
-                    <button class="accordion__item-title">
+                    <button class="accordion__item-title" aria-controls="panel4" aria-expanded="false" id="accordion4">
                         This is a Title
                     </button>
-                    <div class="accordion__item-content">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
-                    </div>
-                </div>
-                <!-- ITEM END -->
-
-            </div>
-        </div>
-        <!-- Accordion JS End -->
-
-
-        <!-- Accordion JS -->
-        <div class="accordion">
-            <div class="accordion__wrapper">
-
-                <div class="accordion__item">
-                    <button class="accordion__item-title">
-                        This is a Title
-                    </button>
-                    <div class="accordion__item-content">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
-                    </div>
-                </div>
-                <!-- ITEM END -->
-
-                <div class="accordion__item">
-                    <button class="accordion__item-title">
-                        This is a Title
-                    </button>
-                    <div class="accordion__item-content">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
-                    </div>
-                </div>
-                <!-- ITEM END -->
-
-                <div class="accordion__item">
-                    <button class="accordion__item-title">
-                        This is a Title
-                    </button>
-                    <div class="accordion__item-content">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
-                    </div>
-                </div>
-                <!-- ITEM END -->
-
-                <div class="accordion__item">
-                    <button class="accordion__item-title">
-                        This is a Title
-                    </button>
-                    <div class="accordion__item-content">
+                    <div class="accordion__item-content" id="panel4" role="region" aria-labelledby="accordion4">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, rerum perspiciatis accusamus nulla, saepe excepturi laborum unde ipsa, eaque totam incidunt. Aperiam eaque accusantium tempora maiores natus labore debitis ut!
                     </div>
                 </div>
@@ -125,7 +76,9 @@
 
     <script src="./src/js/accordion.js"></script>
     <script>
-        const accordion = new AccordionJS( '.accordion' );
+        const accordion = new AccordionHS( {
+            container: '.accordion'
+        } );
     </script>
 </body>
 </html>

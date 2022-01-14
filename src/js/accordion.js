@@ -3,41 +3,154 @@
  * (c) 2021 Héctor Sevilla, MIT License, https://www.hectorsevillasandoval.com/
  */
 
-function AccordionJS(container = null) {
-	if (!container) throw new Error('Please specify a container');
+function AccordionHS(options = {}) {
+	// Creating Settings Object
+	const settings = Object.assign(
+		{
+			container: '.accordion',
+			itemClassName: 'accordion__item',
+			itemTitleClassName: 'accordion__item-title',
+			itemActiveClassName: 'accordion__item--open',
+		},
+		options
+	);
 
-	this.itemClass = 'accordion__item';
-	this.activeItemClass = 'accordion__item--open';
+	// Avoid Overriding settings
+	Object.freeze(settings);
+	// Adding properties to THIS
+	Object.defineProperties(this, {
+		settings: {
+			value: settings,
+		},
+	});
 
-	this.init();
+	// this.container = '.accordion';
+	// this.itemClassName = 'accordion__item';
+	// this.activeItemClassName = 'accordion__item--open';
+
+	// Starting the accordion
+	this.start();
+	//this.init();
 }
 
-AccordionJS.prototype.init = function () {
-	// add Event Lister to the document
-	document.body.addEventListener('click', (e) => {
-		if (e.target.className.includes(this.itemClass)) {
-			this.currentItem = e.target.parentNode;
-			if (this.currentItem.className.includes(this.activeItemClass)) {
-				this.toggle();
+/**
+ * Starts the Accordion
+ */
+AccordionHS.prototype.start = function () {
+	console.log('Starting the accordion');
+	// Selecting Elements
+	const accordions = document.querySelectorAll(this.settings.container);
+	// Throws an error if no valid accordion selector
+	if (!accordions.length) this.showError();
+
+	// Add event listener to all the accordions
+	accordions.forEach((accordion) => {
+		// Each accordion will receive an event Listener
+		this.accordionListener(accordion);
+	});
+};
+
+/**
+ * This will add an event listener to each accordion
+ * @param {Accordion} accordion - Accordion HTML Element
+ */
+AccordionHS.prototype.accordionListener = function (accordion) {
+	this.a11yNavigation(accordion);
+	accordion.addEventListener('click', (event) => {
+		//Clicked item
+		const clickedTitleButton = event.target;
+		if (
+			clickedTitleButton.classList.contains(this.settings.itemTitleClassName)
+		) {
+			const isOpen =
+				clickedTitleButton.getAttribute('aria-expanded') === 'true';
+
+			if (!isOpen) {
+				this.closeActiveAccordion(accordion);
+				this.openAccordion(clickedTitleButton);
 				return;
 			}
-            this.close();
-            this.open();
+			this.closeActiveAccordion(accordion);
 		}
 	});
 };
 
-AccordionJS.prototype.open = function () {
-    console.log('open');
-	this.currentItem.classList.add('accordion__item--open');
+/**
+ * This opens an accordion tab
+ * @param {button} buttonTitle
+ */
+AccordionHS.prototype.openAccordion = function (buttonTitle) {
+	const itemContainer = buttonTitle.parentNode;
+	buttonTitle.setAttribute('aria-expanded', 'true');
+	itemContainer.classList.add(this.settings.itemActiveClassName);
 };
-AccordionJS.prototype.toggle = function () {
-	console.log('toggle');
-    this.currentItem.classList.toggle('accordion__item--open');
+
+/**
+ * This function close an active accordion
+ * @param {accordion} accordion - Accordion HTML Element
+ */
+AccordionHS.prototype.closeActiveAccordion = function (accordion) {
+	const openedButtonItem = accordion.querySelector('[aria-expanded="true"]');
+	const openedItem = openedButtonItem ? openedButtonItem.parentNode : null;
+	if (openedItem && openedButtonItem) {
+		openedButtonItem.setAttribute('aria-expanded', 'false');
+		openedItem.classList.remove('accordion__item--open');
+	}
 };
-AccordionJS.prototype.close = function () {
-    console.log('close');
-    const currentAccordion = this.currentItem.closest('.accordion');
-    const openedItem = currentAccordion.querySelector('.accordion__item--open');
-    if( openedItem ) openedItem.classList.remove('accordion__item--open');
+
+/**
+ * This function enable a11y suggested navigation
+ * @param {accordion} accordion - Accordion HTML Element
+ */
+AccordionHS.prototype.a11yNavigation = function (accordion) {
+	const accordionItems = accordion.querySelectorAll(
+		`.${this.settings.itemClassName}`
+	);
+	const firstAccordionItem = accordionItems[0];
+	const lastAccordionItem = accordionItems[accordionItems.length - 1];
+
+	accordion.addEventListener('keydown', (event) => {
+		const targetItem = event.target.parentNode;
+
+		console.log('target item= ', event.key);
+		switch (event.key) {
+			case 'ArrowUp':
+				this.moveFocusToPreviousElement(
+					targetItem.previousElementSibling || lastAccordionItem
+				);
+				break;
+			case 'ArrowDown':
+				this.moveFocusToNextElement(
+					targetItem.nextElementSibling || firstAccordionItem
+				);
+				break;
+		}
+	});
+};
+
+/**
+ * Moves the focus to the next element
+ * @param {HTML Element} element - This is the next element
+ */
+AccordionHS.prototype.moveFocusToNextElement = function (element) {
+	console.log('Showing Next Item', element);
+	element.querySelector('button').focus();
+};
+
+/**
+ * Moves the focus to the previous element
+ * @param {HTML Element} element - This is the previous element
+ */
+AccordionHS.prototype.moveFocusToPreviousElement = function (element) {
+	console.log('Showing Previous Item');
+	element.querySelector('button').focus();
+};
+
+/**
+ * Shows an Error Message
+ * @returns Error Message
+ */
+AccordionHS.prototype.showError = function () {
+	const errorMessage = `The container=${this.settings.container} is not valid`;
+	return console.error(errorMessage);
 };

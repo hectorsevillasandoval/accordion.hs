@@ -1,13 +1,16 @@
 @import 'variables';
 
 // Main Styles
-body{
+body {
     font-family: $main-font;
     font-weight: 400;
     line-height: normal;
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-image: url(../images/so-white.png);
+    background-repeat: repeat;
 }
-a{
+a {
     color: $blue;
     transition: background-color ease-in-out 0.5s;
     &:hover,
@@ -17,7 +20,7 @@ a{
         text-decoration: none;
     }
 }
-header{
+header {
     text-align: center;
     margin-bottom: 70px;
     padding-left: 20px;
@@ -32,7 +35,7 @@ header{
         line-height: 1.5;
     }
 }
-.accordion{
+.accordion {
     margin-bottom: 40px;
     &__item{
         margin-bottom: 10px;
@@ -55,6 +58,7 @@ header{
             .accordion__item-title{
                 background-color: var(--tab-active-color) !important;
                 border-color: var(--tab-active-color);
+                background-image: url(../images/arrow-up.svg);
                 color: white;
                 border-radius: 5px 5px 0 0;
             }
@@ -94,7 +98,7 @@ header{
     }
 }
 
-@keyframes opacity{
+@keyframes opacity {
     0%{
         opacity: 0;
     }
