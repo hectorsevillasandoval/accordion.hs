@@ -1,5 +1,5 @@
 {
-  "name": "AccordionJS",
+  "name": "Accordion.hs",
   "version": "1.0.0",
   "description": "Small collapse library",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barcadictni/accordionjs.git"
+    "url": "git+https://github.com/barcadictni/accordion.hs.git"
   },
   "keywords": [],
-  "author": "Hector Sevilla <hsevilla@consultwebs-email.com>",
+  "author": "Hector Sevilla <sevillasandoval.hector@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barcadictni/accordionjs/issues"
+    "url": "https://github.com/barcadictni/accordion.hs/issues"
   },
-  "homepage": "https://github.com/barcadictni/accordionjs#readme",
+  "homepage": "https://github.com/barcadictni/accordion.hs#readme",
   "devDependencies": {
     "rollup": "^2.63.0"
   }
