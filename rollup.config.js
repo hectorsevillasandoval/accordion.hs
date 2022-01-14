@@ -14,11 +14,11 @@ let formats = ['iife', 'es', 'cjs'];
 // and the settings to use for them
 export default formats.map(function (format) {
 	return {
-		input: 'accordion.js',
+		input: './src/js/accordion.js',
 		output: {
-			file: `accordion.${format}.js`,
+			file: `./dist/accordion.${format}.js`,
 			format: format,
-			name: 'Accordion JS',
+			name: 'AccordionHS',
 			banner: banner,
 			exports: 'auto',
 		},
