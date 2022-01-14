@@ -104,8 +104,6 @@ AccordionHS.prototype.a11yNavigation = function (accordion) {
 
 	accordion.addEventListener('keydown', (event) => {
 		const targetItem = event.target.parentNode;
-
-		console.log('target item= ', event.key);
 		switch (event.key) {
 			case 'ArrowUp':
 				this.moveToElement(
