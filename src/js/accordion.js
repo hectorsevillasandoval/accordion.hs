@@ -37,7 +37,6 @@ function AccordionHS(options = {}) {
  * Starts the Accordion
  */
 AccordionHS.prototype.start = function () {
-	console.log('Starting the accordion');
 	// Selecting Elements
 	const accordions = document.querySelectorAll(this.settings.container);
 	// Throws an error if no valid accordion selector
@@ -115,14 +114,18 @@ AccordionHS.prototype.a11yNavigation = function (accordion) {
 		console.log('target item= ', event.key);
 		switch (event.key) {
 			case 'ArrowUp':
-				this.moveFocusToPreviousElement(
+				this.moveToElement(
 					targetItem.previousElementSibling || lastAccordionItem
 				);
 				break;
 			case 'ArrowDown':
-				this.moveFocusToNextElement(
-					targetItem.nextElementSibling || firstAccordionItem
-				);
+				this.moveToElement(targetItem.nextElementSibling || firstAccordionItem);
+				break;
+			case 'Home':
+				this.moveToElement(firstAccordionItem);
+				break;
+			case 'End':
+				this.moveToElement(lastAccordionItem);
 				break;
 		}
 	});
@@ -132,17 +135,7 @@ AccordionHS.prototype.a11yNavigation = function (accordion) {
  * Moves the focus to the next element
  * @param {HTML Element} element - This is the next element
  */
-AccordionHS.prototype.moveFocusToNextElement = function (element) {
-	console.log('Showing Next Item', element);
-	element.querySelector('button').focus();
-};
-
-/**
- * Moves the focus to the previous element
- * @param {HTML Element} element - This is the previous element
- */
-AccordionHS.prototype.moveFocusToPreviousElement = function (element) {
-	console.log('Showing Previous Item');
+AccordionHS.prototype.moveToElement = function (element) {
 	element.querySelector('button').focus();
 };
 
