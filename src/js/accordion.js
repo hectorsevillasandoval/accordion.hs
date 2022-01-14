@@ -24,13 +24,7 @@ function AccordionHS(options = {}) {
 		},
 	});
 
-	// this.container = '.accordion';
-	// this.itemClassName = 'accordion__item';
-	// this.activeItemClassName = 'accordion__item--open';
-
-	// Starting the accordion
 	this.start();
-	//this.init();
 }
 
 /**
@@ -147,3 +141,5 @@ AccordionHS.prototype.showError = function () {
 	const errorMessage = `The container=${this.settings.container} is not valid`;
 	return console.error(errorMessage);
 };
+
+export default AccordionHS;
