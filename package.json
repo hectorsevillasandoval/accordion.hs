@@ -1,5 +1,5 @@
 {
-  "name": "Accordion.hs",
+  "name": "accordion.hs",
   "version": "1.0.0",
   "description": "Small collapse library",
   "main": "index.js",
