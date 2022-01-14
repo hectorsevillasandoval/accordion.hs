@@ -16,7 +16,7 @@ export default formats.map(function (format) {
 	return {
 		input: './src/js/accordion.js',
 		output: {
-			file: `./dist/accordion.${format}.js`,
+			file: `./public/accordion.${format}.js`,
 			format: format,
 			name: 'AccordionHS',
 			banner: banner,
