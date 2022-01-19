@@ -1,8 +1,9 @@
 {
   "name": "accordion.hs",
   "version": "1.0.0",
-  "description": "Small collapse library",
-  "main": "index.js",
+  "description": "Small Collapsible Library to show and hide regions of content.",
+  "main": "./public/accordion.hs.cjs.js",
+  "module": "./public/accordion.hs.es.js",
   "scripts": {
     "js": "rollup --config"
   },
@@ -10,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/barcadictni/accordion.hs.git"
   },
-  "keywords": [],
+  "keywords": [
+    "Accordion",
+    "Collapse",
+    "a11y Accordion",
+    "Show and Hide Component"
+  ],
   "author": "Hector Sevilla <sevillasandoval.hector@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -18,6 +24,7 @@
   },
   "homepage": "https://github.com/barcadictni/accordion.hs#readme",
   "devDependencies": {
-    "rollup": "^2.63.0"
+    "rollup": "^2.63.0",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
