@@ -1,6 +1,6 @@
 {
   "name": "accordion.hs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small Collapsible Library to show and hide regions of content.",
   "main": "./public/accordion.hs.cjs.js",
   "module": "./public/accordion.hs.es.js",
