@@ -1,4 +1,5 @@
 import pkg from './package.json';
+import { terser } from 'rollup-plugin-terser';
 
 // The banner to add to the top of each file
 // Pulls details from the package.json file
@@ -21,6 +22,7 @@ export default formats.map(function (format) {
 			name: 'AccordionHS',
 			banner: banner,
 			exports: 'auto',
+			plugins: [terser()],
 		},
 	};
 });
