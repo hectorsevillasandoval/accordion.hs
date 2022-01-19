@@ -3,11 +3,14 @@
  * (c) 2021 Héctor Sevilla, MIT License, https://www.hectorsevillasandoval.com/
  */
 
-function AccordionHS(options = {}) {
+function AccordionHS(accordionContainer, options = {}) {
+	if (!(accordionContainer instanceof NodeList)) {
+		this.showError('Please pass in a NodeList of Elements');
+		return;
+	}
 	// Creating Settings Object
 	const settings = Object.assign(
 		{
-			container: '.accordion',
 			itemClassName: 'accordion__item',
 			itemTitleClassName: 'accordion__item-title',
 			itemActiveClassName: 'accordion__item--open',
@@ -19,6 +22,9 @@ function AccordionHS(options = {}) {
 	Object.freeze(settings);
 	// Adding properties to THIS
 	Object.defineProperties(this, {
+		accordions: {
+			value: accordionContainer,
+		},
 		settings: {
 			value: settings,
 		},
@@ -31,13 +37,8 @@ function AccordionHS(options = {}) {
  * Starts the Accordion
  */
 AccordionHS.prototype.start = function () {
-	// Selecting Elements
-	const accordions = document.querySelectorAll(this.settings.container);
-	// Throws an error if no valid accordion selector
-	if (!accordions.length) this.showError();
-
 	// Add event listener to all the accordions
-	accordions.forEach((accordion) => {
+	this.accordions.forEach((accordion) => {
 		// Each accordion will receive an event Listener
 		this.accordionListener(accordion);
 	});
@@ -87,7 +88,7 @@ AccordionHS.prototype.closeActiveAccordion = function (accordion) {
 	const openedItem = openedButtonItem ? openedButtonItem.parentNode : null;
 	if (openedItem && openedButtonItem) {
 		openedButtonItem.setAttribute('aria-expanded', 'false');
-		openedItem.classList.remove('accordion__item--open');
+		openedItem.classList.remove(this.settings.itemActiveClassName);
 	}
 };
 
@@ -135,8 +136,8 @@ AccordionHS.prototype.moveToElement = function (element) {
  * Shows an Error Message
  * @returns Error Message
  */
-AccordionHS.prototype.showError = function () {
-	const errorMessage = `The container=${this.settings.container} is not valid`;
+AccordionHS.prototype.showError = function (errorMessage) {
+	//const errorMessage = `The container=${this.settings.container} is not valid`;
 	return console.error(errorMessage);
 };
 
